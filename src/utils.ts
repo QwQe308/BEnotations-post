@@ -53,7 +53,7 @@ export function formatNumber(value: number, accuracy: number) {
   if (value <= 1e9) {
     return addCommas(value.toString())
   }
-  return value.toFixed(accuracy).toString() + "e" + Math.floor(Math.log10(value)).toString()
+  return (value / Math.pow(10, Math.floor(Math.log10(value)))).toFixed(accuracy).toString() + "e" + Math.floor(Math.log10(value)).toString()
 }
 
 function commaSection(value: string, index: number): string {
