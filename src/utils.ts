@@ -25,9 +25,9 @@ export function magLayerFormatting(
       output = "-" + output
       if (value.sign == 0) return "0" 
     }
-    output += formatNumber(value.mag, accuracy)
+    output += formatNumber(value.mag, accuracy).toString()
     output += layertext
-    output += formatNumber(value.layer, accuracy)
+    output += formatNumber(value.layer, accuracy).toString()
     return(output)
 }
 
@@ -42,9 +42,9 @@ export function layerMagFormatting(
       output = "-" + output
       if (value.sign == 0) return "0" 
     }
-    output += formatNumber(value.layer, accuracy)
+    output += formatNumber(value.layer, accuracy).toString()
     output += magtext
-    output += formatNumber(value.mag, accuracy)
+    output += formatNumber(value.mag, accuracy).toString()
     return(output)
 }
 
@@ -53,7 +53,7 @@ export function formatNumber(value: number, accuracy: number) {
   if (value <= 1e9) {
     return addCommas(value.toString())
   }
-  return value.toFixed(accuracy).toString() + "e" + (Math.log(value)/Math.log(10)).toString()
+  return value.toFixed(accuracy).toString() + "e" + Math.floor(Math.log10(value)).toString()
 }
 
 function commaSection(value: string, index: number): string {

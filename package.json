@@ -1,11 +1,11 @@
 {
   "name": "adnot-beport-large",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Notations used in Antimatter Dimensions, built for break_eternity.js. This set of notations is specifically built for numbers greater than 1e9e15",
   "scripts": {
     "build": "npm run build:ad && npm run build:community",
-    "build:ad": "bili --config bili.config.base.ts && cp dist/adbe-notations.min.js docs/adbe-notations.min.js",
-    "build:community": "bili --config bili.config.community.ts && cp dist/adbe-notations.community.min.js docs/adbe-notations.community.min.js",
+    "build:ad": "bili --config bili.config.base.ts && cp dist/ad-notations.min.js docs/ad-notations.min.js",
+    "build:community": "bili --config bili.config.community.ts && cp dist/ad-notations.community.min.js docs/ad-notations.community.min.js",
     "lint": "eslint .",
     "test": "jest"
   },
