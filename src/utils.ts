@@ -6,10 +6,10 @@ import { BigSettings } from "./settings.js";
 //do that if we merged the two, but having them seperate makes it easier to do shit and allows me to work on the be port so that it works with the pre e9e15 before dealing with this shit)
 
 function roundExpTo(value: Decimal, accuracy: number) {
-  value.exponent = Number(value.exponent.toFixed(accuracy))
-  if (value.exponent >= 9e15) {
-    value.exponent = Math.log(value.exponent)
-    value.mag += 1
+  value.mag = Number(value.mag.toFixed(accuracy))
+  if (value.mag >= 9e15) {
+    value.mag = Math.log(value.mag)
+    value.layer += 1
   }
   return value
 }
@@ -50,7 +50,7 @@ export function layerMagFormatting(
 
 export function formatNumber(value: number, accuracy: number) {
   if (value <= BigSettings.numCommas) return value.toString()
-  if (value <= 1e12) {
+  if (value <= 1e9) {
     return addCommas(value.toString())
   }
   return value.toFixed(accuracy).toString() + "e" + (Math.log(value)/Math.log(10)).toString()
