@@ -30,19 +30,21 @@ export class ExtendedScientificNotation extends Notation {
 
   public formatLDecimal(inputVal: Decimal, places: number): string {
     const placeholderValue = roundExpTo(inputVal, places);
-    let value = {}
+    let value = {layer: 0,
+      mag: 0,
+      sign: 0};
     if (placeholderValue.mag < 250) {
       value = {
         layer: placeholderValue.layer - 1,
         mag: 10 ** placeholderValue.mag,
         sign: placeholderValue.sign
-      }
+      };
     } else {
       value = {
         layer: placeholderValue.layer,
         mag: placeholderValue.mag,
         sign: placeholderValue.sign
-      }
+      };
     }
     return layerMagFormatting(value.layer, value.mag, value.sign, places, "E", "F");
   }

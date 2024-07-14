@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
-import { formatNumber } from "./utils";
+import { formatNumber, roundExpTo } from "./utils";
 // Import { formatMantissaWithExponent, formatMantissaBaseTen } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, max-params
@@ -40,7 +40,9 @@ export class SemiStackedScientificNotation extends Notation {
       return `${str}e${formatNumber(inputVal.mag, places)}`;
     }
     const placeholderValue = roundExpTo(inputVal, places);
-    let value = {};
+    let value = {layer: 0,
+      mag: 0,
+      sign: 0};
     if (placeholderValue.mag < 250) {
       value = {
         layer: placeholderValue.layer - 1,

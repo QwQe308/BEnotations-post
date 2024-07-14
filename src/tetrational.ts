@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
-import { formatNumber } from "./utils";
+import { formatNumber, roundExpTo } from "./utils";
 
 function layerMagFormatting(
   layer: number,
@@ -28,7 +28,9 @@ export class TetrationalNotation extends Notation {
 
   public formatLDecimal(inputVal: Decimal, places: number): string {
     const placeholderValue = roundExpTo(inputVal, places);
-    let value = {};
+    let value = {layer: 0,
+      mag: 0,
+      sign: 0};
     if (placeholderValue.mag < 250) {
       value = {
         layer: placeholderValue.layer - 1,
