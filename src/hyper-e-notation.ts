@@ -22,7 +22,7 @@ function layerMagFormatting(
   return output;
 }
 
-export class ExtendedScientificNotation extends Notation {
+export class HyperENotation extends Notation {
   public get name(): string {
     return "Extended Scientific";
   }
