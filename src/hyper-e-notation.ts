@@ -44,7 +44,7 @@ export class ExtendedScientificNotation extends Notation {
         sign: placeholderValue.sign
       }
     }
-    return layerMagFormatting(value.layer, value.mag, value.sign, places, "E", "F");
+    return layerMagFormatting(value.layer, value.mag, value.sign, places, "E#", "F");
   }
 
 // Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {
