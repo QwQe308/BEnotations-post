@@ -1,62 +1,15 @@
+/* eslint-disable max-lines */
+/* eslint-disable capitalized-comments */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable max-params */
 import type Decimal from "break_eternity.js";
 import { BigSettings } from "./settings.js";
 
 
 // All the below sections of code are converted to break_eternity. For numbers less that e9e15, we can use the normal AD notations code, which also gives us the ability to use different notations for pre e9e15 and post e9e15 (well we could
 // do that if we merged the two, but having them seperate makes it easier to do shit and allows me to work on the be port so that it works with the pre e9e15 before dealing with this shit)
-
-export function roundExpTo(value: Decimal, accuracy: number) {
-  value.mag = Number(value.mag.toFixed(accuracy));
-  if (value.mag >= 9e15) {
-    value.mag = Math.log(value.mag);
-    value.layer += 1;
-  }
-  return value;
-}
-
-export function magLayerFormatting(
-  value: Decimal,
-  accuracy: number,
-  magtext: string,
-  layertext: string
-) {
-  value = roundExpTo(value, accuracy);
-  let output = magtext.toString();
-  if (value.sign != 1) {
-    output = `-${output}`;
-    if (value.sign == 0) return "0";
-  }
-  output += formatNumber(value.mag, accuracy).toString();
-  output += layertext;
-  output += formatNumber(value.layer, accuracy).toString();
-  return output;
-}
-
-export function layerMagFormatting(
-  value: Decimal,
-  accuracy: number,
-  magtext: string,
-  layertext: string
-) {
-  value = roundExpTo(value, accuracy);
-  let output = layertext.toString();
-  if (value.sign != 1) {
-    output = `-${output}`;
-    if (value.sign == 0) return "0";
-  }
-  output += formatNumber(value.layer, accuracy).toString();
-  output += magtext;
-  output += formatNumber(value.mag, accuracy).toString();
-  return output;
-}
-
-export function formatNumber(value: number, accuracy: number) {
-  if (value <= BigSettings.numCommas) return value.toString();
-  if (value <= 1e9) {
-    return addCommas(value.toString());
-  }
-  return `${(value / 10 ** Math.floor(Math.log10(value))).toFixed(accuracy).toString()}e${Math.floor(Math.log10(value)).toString()}`;
-}
 
 function commaSection(value: string, index: number): string {
   if (index === 0) {
@@ -77,6 +30,79 @@ function addCommas(value: string): string {
     .join(",");
 }
 
+export function formatNumber(value: number, accuracy: number) {
+  if (value <= BigSettings.numCommas) return value.toString();
+  if (value <= 1e9) {
+    return addCommas(value.toString());
+  }
+  return `${(value / 10 ** Math.floor(Math.log10(value))).toFixed(accuracy)}e${Math.floor(Math.log10(value))}`;
+}
+
+function formatDecimal(value: Decimal, accuracy: number) {
+  if (value.layer <= Math.log10(BigSettings.numCommas)) {
+    return `${value.toNumber().toFixed(accuracy)}`;
+  }
+  if (value.layer <= 9) {
+    return addCommas(`${value.toNumber().toFixed(accuracy)}`);
+  }
+  return `${(10 ** (value.layer % 10)).toFixed(accuracy)}e${addCommas(Math.floor(value.layer).toFixed(accuracy))}`;
+}
+
+export function roundExpTo(value: Decimal, accuracy: number) {
+  value.mag = Number((value.mag / 1e15).toFixed(accuracy)) * 1e15;
+  if (value.mag >= 9e15) {
+    value.mag = Math.log10(value.mag);
+    value.layer += 1;
+  }
+  return value;
+}
+
+// usefulValues converts stuffl like F9E7 -> F8E1.77e7
+export function magLayerFormatting(
+  value: Decimal,
+  accuracy: number,
+  magtext: string,
+  layertext: string,
+  usefulValues = false
+) {
+  value = roundExpTo(value, accuracy);
+  let output = magtext;
+  if (value.sign <= 0) {
+    output = `-${output}`;
+  }
+  output += formatNumber(value.mag, accuracy).toString();
+  output += layertext;
+  if (usefulValues) {
+    output += formatDecimal(value, accuracy);
+  } else {
+    output += formatNumber(Math.floor(value.layer), accuracy).toString();
+  }
+  return output;
+}
+
+// usefulValues converts stuffl like F9E7 -> F8E1.77e7
+export function layerMagFormatting(
+  value: Decimal,
+  accuracy: number,
+  magtext: string,
+  layertext: string,
+  usefulValues: boolean
+) {
+  value = roundExpTo(value, accuracy);
+  let output = layertext;
+  if (value.sign <= 0) {
+    output = `-${output}`;
+  }
+  if (usefulValues) {
+    output += formatDecimal(value, accuracy);
+  } else {
+    output += formatNumber(Math.floor(value.layer), accuracy).toString();
+  }
+  output += magtext;
+  output += formatNumber(value.mag, accuracy).toString();
+  return output;
+}
+
 //
 // Export function formatWithCommas(value: number | string): string {
 // const decimalPointSplit = value.toString().split(".");
@@ -92,7 +118,6 @@ function addCommas(value: string): string {
 // Fixes cases like (9.6e3, 0), which results in "10e3" (but we need "1e4" instead)
 // because toFixed rounds numbers to closest integer
 //
-// eslint-disable-next-line max-paramstoFixed
 // export function fixMantissaOverflow(
 // value: Decimal,
 // places: number,

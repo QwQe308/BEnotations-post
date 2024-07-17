@@ -1,3 +1,4 @@
+/* eslint-disable newline-per-chained-call */
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
 import { formatNumber } from "./utils";
@@ -8,7 +9,8 @@ export class ExtendedLogarithmNotation extends Notation {
   }
 
   public formatLDecimal(value: Decimal, places: number): string {
-    return `F${formatNumber(value.slog().toNumber(), places)}`;
+    if (!value.isFinite) return "Infinity";
+    return `${value.sign === -1 ? "-" : ""}F${formatNumber(value.abs().slog().toNumber(), places)}`;
   }
 //  Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {
 //    const log10 = value.log10();

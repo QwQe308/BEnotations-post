@@ -135,6 +135,8 @@ module.exports = {
     "@typescript-eslint/class-literal-property-style": "off",
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/no-magic-numbers": "off",
+    "@typescript-eslint/no-unnecessary-condition": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/object-curly-spacing": "off",
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/space-before-function-paren": "off"
