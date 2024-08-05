@@ -10,8 +10,8 @@ export class ExtendedScientificNotation extends Notation {
 
 
   public formatLDecimal(value: Decimal, places: number): string {
-    if (!value.isFinite) return "Infinity";
-    return layerMagFormatting(value, places, "E", "F", true);
+    if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
+    return layerMagFormatting(value, places, "E", "F");
   }
 
 // Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {

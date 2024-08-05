@@ -12,16 +12,13 @@ export class SemiStackedScientificNotation extends Notation {
   }
 
   public formatLDecimal(value: Decimal, places: number): string {
-    if (!value.isFinite) return "Infinity";
+    if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
     if (value.layer <= 4) {
       let str = "";
       str += "e".repeat(value.layer - 1);
-      if (value.mag < 250) {
-        return str + formatNumber(10 ** (value.mag % 1), 2) + formatNumber(value.mag, places);
-      }
-      return `${str}e${formatNumber(value.mag, places)}`;
+      return `${str}${formatNumber(10 ** (value.mag % 1), places, false)}e${formatNumber(Math.floor(value.mag), 99, true)}`;
     }
-    return layerMagFormatting(value, places, "E", "F", true);
+    return layerMagFormatting(value, places, "E", "F");
   }
 
 // Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {

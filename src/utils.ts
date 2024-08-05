@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable max-params */
 import type Decimal from "break_eternity.js";
-import { BigSettings } from "./settings.js";
+import { BigSettings } from "./settings";
 
 
 // All the below sections of code are converted to break_eternity. For numbers less that e9e15, we can use the normal AD notations code, which also gives us the ability to use different notations for pre e9e15 and post e9e15 (well we could
@@ -30,76 +30,88 @@ function addCommas(value: string): string {
     .join(",");
 }
 
-export function formatNumber(value: number, accuracy: number) {
-  if (value <= BigSettings.numCommas) return value.toString();
+function toAccuracy(value: number, accuracy: number, fancy: boolean) {
+  if (fancy || accuracy === 0) {
+    const output = parseFloat(value.toPrecision(Math.max(accuracy, 1))).toString();
+    return output;
+  }
+  return value.toPrecision(accuracy);
+}
+
+export function formatNumber(value: number, accuracy: number, fancy: boolean) {
+  if (value <= BigSettings.numCommas) return toAccuracy(value, accuracy, fancy);
   if (value <= 1e9) {
-    return addCommas(value.toString());
+    return addCommas(toAccuracy(value, accuracy, fancy));
   }
-  return `${(value / 10 ** Math.floor(Math.log10(value))).toFixed(accuracy)}e${Math.floor(Math.log10(value))}`;
+  const val1 = value / 10 ** Math.floor(Math.log10(value));
+  const val2 = Math.floor(Math.log10(value));
+  return `${toAccuracy(val1, accuracy, false)}e${toAccuracy(val2, accuracy, true)}`;
 }
 
-function formatDecimal(value: Decimal, accuracy: number) {
-  if (value.layer <= Math.log10(BigSettings.numCommas)) {
-    return `${value.toNumber().toFixed(accuracy)}`;
+function formatBetterMag(value: number, accuracy: number) {
+  if (value < 1e9) {
+    return `${formatNumber(10 ** (value % 1), accuracy, false)}e${formatNumber(Math.floor(value), String(Math.floor(value)).length, true)}`;
   }
-  if (value.layer <= 9) {
-    return addCommas(`${value.toNumber().toFixed(accuracy)}`);
-  }
-  return `${(10 ** (value.layer % 10)).toFixed(accuracy)}e${addCommas(Math.floor(value.layer).toFixed(accuracy))}`;
+  return `e${formatNumber(value, 4, true)}`;
 }
 
-export function roundExpTo(value: Decimal, accuracy: number) {
-  value.mag = Number((value.mag / 1e15).toFixed(accuracy)) * 1e15;
-  if (value.mag >= 9e15) {
-    value.mag = Math.log10(value.mag);
-    value.layer += 1;
+export function roundExpTo(value: {mag: number; layer: number; sign: number}, accuracy: number) {
+  const temp = Number(toAccuracy(value.mag, accuracy, true));
+  const val = value;
+  if (temp >= 9e15) {
+    val.mag = Math.log10(val.mag);
+    val.layer += 1;
   }
-  return value;
+  if (temp < 15.9) {
+    val.mag = 10 ** val.mag;
+    val.layer -= 1;
+  }
+  return val;
 }
 
 // usefulValues converts stuffl like F9E7 -> F8E1.77e7
 export function magLayerFormatting(
-  value: Decimal,
+  inValue: Decimal,
   accuracy: number,
   magtext: string,
-  layertext: string,
-  usefulValues = false
+  layertext: string
 ) {
+  let value = {
+    mag: inValue.mag,
+    layer: inValue.layer,
+    sign: inValue.sign
+  };
   value = roundExpTo(value, accuracy);
   let output = magtext;
   if (value.sign <= 0) {
     output = `-${output}`;
   }
-  output += formatNumber(value.mag, accuracy).toString();
+  output += formatBetterMag(value.mag, accuracy);
   output += layertext;
-  if (usefulValues) {
-    output += formatDecimal(value, accuracy);
-  } else {
-    output += formatNumber(Math.floor(value.layer), accuracy).toString();
-  }
+  output += formatNumber(value.layer - 1, 0, false);
   return output;
 }
 
 // usefulValues converts stuffl like F9E7 -> F8E1.77e7
 export function layerMagFormatting(
-  value: Decimal,
+  inValue: Decimal,
   accuracy: number,
   magtext: string,
-  layertext: string,
-  usefulValues: boolean
+  layertext: string
 ) {
+  let value = {
+    mag: inValue.mag,
+    layer: inValue.layer,
+    sign: inValue.sign
+  };
   value = roundExpTo(value, accuracy);
   let output = layertext;
   if (value.sign <= 0) {
     output = `-${output}`;
   }
-  if (usefulValues) {
-    output += formatDecimal(value, accuracy);
-  } else {
-    output += formatNumber(Math.floor(value.layer), accuracy).toString();
-  }
+  output += formatNumber(value.layer - 1, 0, false);
   output += magtext;
-  output += formatNumber(value.mag, accuracy).toString();
+  output += formatBetterMag(value.mag, accuracy);
   return output;
 }
 

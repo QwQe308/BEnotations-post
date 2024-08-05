@@ -1,17 +1,17 @@
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
-import { layerMagFormatting } from "./utils";
+import { magLayerFormatting } from "./utils";
 // Import { formatMantissaWithExponent, formatMantissaBaseTen } from "./utils";
 
 export class HyperENotation extends Notation {
   public get name(): string {
-    return "Hyper E notation";
+    return "Hyper E";
   }
 
 
   public formatLDecimal(value: Decimal, places: number): string {
-    if (!value.isFinite) return "Infinity";
-    return layerMagFormatting(value, places, "E", "#", true);
+    if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
+    return magLayerFormatting(value, places, "E", "#");
   }
 
 // Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {

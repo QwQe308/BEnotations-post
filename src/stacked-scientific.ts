@@ -1,6 +1,6 @@
 import type Decimal from "break_eternity.js";
 import { Notation } from "./notation";
-import { magLayerFormatting, formatNumber} from "./utils";
+import { layerMagFormatting, formatNumber} from "./utils";
 // Import { formatMantissaWithExponent, formatMantissaBaseTen } from "./utils";
 
 export class StackedScientificNotation extends Notation {
@@ -9,13 +9,13 @@ export class StackedScientificNotation extends Notation {
   }
 
   public formatLDecimal(value: Decimal, places: number): string {
-    if (!value.isFinite) return "Infinity";
+    if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
     if (value.layer <= 4) {
       let str = "";
       str += "e".repeat(value.layer - 1);
-      return `${str + formatNumber(10 ** (value.mag % 1), 2)}e${formatNumber(Math.floor(value.mag), places)}`;
+      return `${str}${formatNumber(10 ** (value.mag % 1), places, false)}e${formatNumber(Math.floor(value.mag), 99, true)}`;
     }
-    return magLayerFormatting(value, places, "]", "[e^", true);
+    return layerMagFormatting(value, places, "]", "[e^");
   }
 }
 

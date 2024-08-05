@@ -9,8 +9,8 @@ export class TetrationalNotation extends Notation {
   }
 
   public formatLDecimal(value: Decimal, places: number): string {
-    if (!value.isFinite) return "Infinity";
-    return layerMagFormatting(value, places, "^", "10^^", true);
+    if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
+    return layerMagFormatting(value, places, "^", "10^^");
   }
 //  Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {
 //    const log10 = value.log10();
