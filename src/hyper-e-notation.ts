@@ -11,7 +11,7 @@ export class HyperENotation extends Notation {
 
   public formatLDecimal(value: Decimal, places: number): string {
     if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
-    return magLayerFormatting(value, places, "E", "#");
+    return magLayerFormatting(value, places + 1, "E", "#");
   }
 
 // Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {

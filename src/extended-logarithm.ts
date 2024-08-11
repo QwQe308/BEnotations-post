@@ -10,7 +10,7 @@ export class ExtendedLogarithmNotation extends Notation {
 
   public formatLDecimal(value: Decimal, places: number): string {
     if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
-    return `${value.sign === -1 ? "-" : ""}F${formatNumber(value.abs().slog().toNumber(), places, false)}`;
+    return `${value.sign === -1 ? "-" : ""}F${formatNumber(value.abs().slog().toNumber(), places + 1, false)}`;
   }
 //  Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {
 //    const log10 = value.log10();

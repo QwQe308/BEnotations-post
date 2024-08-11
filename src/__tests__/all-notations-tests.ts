@@ -17,35 +17,35 @@ describe("Semi-Stacked Scientific Notation", () => {
 
 
   it("should format values from e9e15 to ee100 as eXeY", () => {
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 3)).toBe("e7.00e23");
-    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 3)).toBe("e7.15e23");
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 1)).toBe("e7e23");
-    expect(notation.formatLDecimal(new Decimal("e7e47"), 3)).toBe("e7.00e47");
-    expect(notation.formatLDecimal(new Decimal("e7e99"), 3)).toBe("e7.00e99");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 2)).toBe("e7.00e23");
+    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 2)).toBe("e7.15e23");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 0)).toBe("e7e23");
+    expect(notation.formatLDecimal(new Decimal("e7e47"), 2)).toBe("e7.00e47");
+    expect(notation.formatLDecimal(new Decimal("e7e99"), 2)).toBe("e7.00e99");
   });
 
   it("should format values from ee9e15 to eee100 as eeXeY", () => {
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 3)).toBe("ee7.00e23");
-    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 3)).toBe("ee7.15e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 1)).toBe("ee7e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e47"), 3)).toBe("ee7.00e47");
-    expect(notation.formatLDecimal(new Decimal("ee7e99"), 3)).toBe("ee7.00e99");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 2)).toBe("ee7.00e23");
+    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 2)).toBe("ee7.15e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 0)).toBe("ee7e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e47"), 2)).toBe("ee7.00e47");
+    expect(notation.formatLDecimal(new Decimal("ee7e99"), 2)).toBe("ee7.00e99");
   });
 
   it("should format values from eee9e15 to eeee100 as eeeXeY", () => {
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 3)).toBe("eee7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 3)).toBe("eee7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 1)).toBe("eee7e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e47"), 3)).toBe("eee7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eee7e99"), 3)).toBe("eee7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 2)).toBe("eee7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 2)).toBe("eee7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 0)).toBe("eee7e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e47"), 2)).toBe("eee7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eee7e99"), 2)).toBe("eee7.00e99");
   });
 
   it("should format values above eeee9e15 as FxEy", () => {
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 3)).toBe("F4E7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 3)).toBe("F4E7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 1)).toBe("F4E7e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 3)).toBe("F4E7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 3)).toBe("F4E7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 2)).toBe("F4E7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 2)).toBe("F4E7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 0)).toBe("F4E7e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 2)).toBe("F4E7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 2)).toBe("F4E7.00e99");
   });
 });
 
@@ -58,35 +58,35 @@ describe("Stacked Scientific Notation", () => {
 
 
   it("should format values from e9e15 to ee100 as eXeY", () => {
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 3)).toBe("e7.00e23");
-    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 3)).toBe("e7.15e23");
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 1)).toBe("e7e23");
-    expect(notation.formatLDecimal(new Decimal("e7e47"), 3)).toBe("e7.00e47");
-    expect(notation.formatLDecimal(new Decimal("e7e99"), 3)).toBe("e7.00e99");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 2)).toBe("e7.00e23");
+    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 2)).toBe("e7.15e23");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 0)).toBe("e7e23");
+    expect(notation.formatLDecimal(new Decimal("e7e47"), 2)).toBe("e7.00e47");
+    expect(notation.formatLDecimal(new Decimal("e7e99"), 2)).toBe("e7.00e99");
   });
 
   it("should format values from ee9e15 to eee100 as eeXeY", () => {
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 3)).toBe("ee7.00e23");
-    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 3)).toBe("ee7.15e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 1)).toBe("ee7e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e47"), 3)).toBe("ee7.00e47");
-    expect(notation.formatLDecimal(new Decimal("ee7e99"), 3)).toBe("ee7.00e99");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 2)).toBe("ee7.00e23");
+    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 2)).toBe("ee7.15e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 0)).toBe("ee7e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e47"), 2)).toBe("ee7.00e47");
+    expect(notation.formatLDecimal(new Decimal("ee7e99"), 2)).toBe("ee7.00e99");
   });
 
   it("should format values from eee9e15 to eeee100 as eeeXeY", () => {
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 3)).toBe("eee7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 3)).toBe("eee7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 1)).toBe("eee7e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e47"), 3)).toBe("eee7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eee7e99"), 3)).toBe("eee7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 2)).toBe("eee7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 2)).toBe("eee7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 0)).toBe("eee7e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e47"), 2)).toBe("eee7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eee7e99"), 2)).toBe("eee7.00e99");
   });
 
   it("should format values above eeee9e15 as [e^x]y", () => {
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 3)).toBe("[e^4]7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 3)).toBe("[e^4]7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 1)).toBe("[e^4]7e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 3)).toBe("[e^4]7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 3)).toBe("[e^4]7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 2)).toBe("[e^4]7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 2)).toBe("[e^4]7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 0)).toBe("[e^4]7e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 2)).toBe("[e^4]7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 2)).toBe("[e^4]7.00e99");
   });
 });
 
@@ -99,26 +99,33 @@ describe("Extended Scientific Notation", () => {
 
 
   it("should format all values as FxEy", () => {
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 3)).toBe("F1E7.00e23");
-    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 3)).toBe("F1E7.15e23");
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 1)).toBe("F1E7e23");
-    expect(notation.formatLDecimal(new Decimal("e7e47"), 3)).toBe("F1E7.00e47");
-    expect(notation.formatLDecimal(new Decimal("e7e99"), 3)).toBe("F1E7.00e99");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 3)).toBe("F2E7.00e23");
-    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 3)).toBe("F2E7.15e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 1)).toBe("F2E7e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e47"), 3)).toBe("F2E7.00e47");
-    expect(notation.formatLDecimal(new Decimal("ee7e99"), 3)).toBe("F2E7.00e99");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 3)).toBe("F3E7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 3)).toBe("F3E7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 1)).toBe("F3E7e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e47"), 3)).toBe("F3E7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eee7e99"), 3)).toBe("F3E7.00e99");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 3)).toBe("F4E7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 3)).toBe("F4E7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 1)).toBe("F4E7e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 3)).toBe("F4E7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 3)).toBe("F4E7.00e99");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 2)).toBe("F1E7.00e23");
+    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 2)).toBe("F1E7.15e23");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 0)).toBe("F1E7e23");
+    expect(notation.formatLDecimal(new Decimal("e7e47"), 2)).toBe("F1E7.00e47");
+    expect(notation.formatLDecimal(new Decimal("e7e99"), 2)).toBe("F1E7.00e99");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 2)).toBe("F2E7.00e23");
+    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 2)).toBe("F2E7.15e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 0)).toBe("F2E7e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e47"), 2)).toBe("F2E7.00e47");
+    expect(notation.formatLDecimal(new Decimal("ee7e99"), 2)).toBe("F2E7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 2)).toBe("F3E7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 2)).toBe("F3E7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 0)).toBe("F3E7e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e47"), 2)).toBe("F3E7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eee7e99"), 2)).toBe("F3E7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 2)).toBe("F4E7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 2)).toBe("F4E7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 0)).toBe("F4E7e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 2)).toBe("F4E7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 2)).toBe("F4E7.00e99");
+  });
+
+  // This is purely to make sure formatting works fine for these super large inputs, and
+  // if these work then all the others should aswell, so dont bother testing all of them
+  it("should format all super-large values as FxEy correctly", () => {
+    expect(notation.formatLDecimal(new Decimal("(e^2.34e15)1234"), 2)).toBe("F2.34e15E1.00e1234");
+    expect(notation.formatLDecimal(new Decimal("(e^2.34e15)1234"), 0)).toBe("F2e15E1e1234");
   });
 });
 
@@ -131,26 +138,26 @@ describe("Extended Logarithm Notation", () => {
 
 
   it("should format all values as Fx", () => {
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 3)).toBe("F3.19");
-    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 3)).toBe("F3.19");
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 1)).toBe("F3");
-    expect(notation.formatLDecimal(new Decimal("e7e47"), 3)).toBe("F3.30");
-    expect(notation.formatLDecimal(new Decimal("e7e99"), 3)).toBe("F3.39");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 4)).toBe("F4.188");
-    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 4)).toBe("F4.188");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 1)).toBe("F4");
-    expect(notation.formatLDecimal(new Decimal("ee7e47"), 4)).toBe("F4.300");
-    expect(notation.formatLDecimal(new Decimal("ee7e99"), 4)).toBe("F4.393");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 5)).toBe("F5.1880");
-    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 5)).toBe("F5.1881");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 1)).toBe("F5");
-    expect(notation.formatLDecimal(new Decimal("eee7e47"), 5)).toBe("F5.2999");
-    expect(notation.formatLDecimal(new Decimal("eee7e99"), 5)).toBe("F5.3927");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 6)).toBe("F6.18799");
-    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 6)).toBe("F6.18806");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 1)).toBe("F6");
-    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 6)).toBe("F6.29987");
-    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 6)).toBe("F6.39273");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 2)).toBe("F3.19");
+    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 2)).toBe("F3.19");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 0)).toBe("F3");
+    expect(notation.formatLDecimal(new Decimal("e7e47"), 2)).toBe("F3.30");
+    expect(notation.formatLDecimal(new Decimal("e7e99"), 2)).toBe("F3.39");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 3)).toBe("F4.188");
+    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 3)).toBe("F4.188");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 0)).toBe("F4");
+    expect(notation.formatLDecimal(new Decimal("ee7e47"), 3)).toBe("F4.300");
+    expect(notation.formatLDecimal(new Decimal("ee7e99"), 3)).toBe("F4.393");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 4)).toBe("F5.1880");
+    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 4)).toBe("F5.1881");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 0)).toBe("F5");
+    expect(notation.formatLDecimal(new Decimal("eee7e47"), 4)).toBe("F5.2999");
+    expect(notation.formatLDecimal(new Decimal("eee7e99"), 4)).toBe("F5.3927");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 5)).toBe("F6.18799");
+    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 5)).toBe("F6.18806");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 0)).toBe("F6");
+    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 5)).toBe("F6.29987");
+    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 5)).toBe("F6.39273");
   });
 });
 
@@ -163,26 +170,26 @@ describe("Hyper E Notation", () => {
 
 
   it("should format all values as Ex#Y", () => {
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 3)).toBe("E7.00e23#1");
-    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 3)).toBe("E7.15e23#1");
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 1)).toBe("E7e23#1");
-    expect(notation.formatLDecimal(new Decimal("e7e47"), 3)).toBe("E7.00e47#1");
-    expect(notation.formatLDecimal(new Decimal("e7e99"), 3)).toBe("E7.00e99#1");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 3)).toBe("E7.00e23#2");
-    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 3)).toBe("E7.15e23#2");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 1)).toBe("E7e23#2");
-    expect(notation.formatLDecimal(new Decimal("ee7e47"), 3)).toBe("E7.00e47#2");
-    expect(notation.formatLDecimal(new Decimal("ee7e99"), 3)).toBe("E7.00e99#2");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 3)).toBe("E7.00e23#3");
-    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 3)).toBe("E7.15e23#3");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 1)).toBe("E7e23#3");
-    expect(notation.formatLDecimal(new Decimal("eee7e47"), 3)).toBe("E7.00e47#3");
-    expect(notation.formatLDecimal(new Decimal("eee7e99"), 3)).toBe("E7.00e99#3");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 3)).toBe("E7.00e23#4");
-    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 3)).toBe("E7.15e23#4");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 1)).toBe("E7e23#4");
-    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 3)).toBe("E7.00e47#4");
-    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 3)).toBe("E7.00e99#4");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 2)).toBe("E7.00e23#1");
+    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 2)).toBe("E7.15e23#1");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 0)).toBe("E7e23#1");
+    expect(notation.formatLDecimal(new Decimal("e7e47"), 2)).toBe("E7.00e47#1");
+    expect(notation.formatLDecimal(new Decimal("e7e99"), 2)).toBe("E7.00e99#1");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 2)).toBe("E7.00e23#2");
+    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 2)).toBe("E7.15e23#2");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 0)).toBe("E7e23#2");
+    expect(notation.formatLDecimal(new Decimal("ee7e47"), 2)).toBe("E7.00e47#2");
+    expect(notation.formatLDecimal(new Decimal("ee7e99"), 2)).toBe("E7.00e99#2");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 2)).toBe("E7.00e23#3");
+    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 2)).toBe("E7.15e23#3");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 0)).toBe("E7e23#3");
+    expect(notation.formatLDecimal(new Decimal("eee7e47"), 2)).toBe("E7.00e47#3");
+    expect(notation.formatLDecimal(new Decimal("eee7e99"), 2)).toBe("E7.00e99#3");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 2)).toBe("E7.00e23#4");
+    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 2)).toBe("E7.15e23#4");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 0)).toBe("E7e23#4");
+    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 2)).toBe("E7.00e47#4");
+    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 2)).toBe("E7.00e99#4");
   });
 });
 
@@ -195,26 +202,26 @@ describe("Tetrational Notation", () => {
 
 
   it("should format all values as 10^^x^y", () => {
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 3)).toBe("10^^1^7.00e23");
-    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 3)).toBe("10^^1^7.15e23");
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 1)).toBe("10^^1^7e23");
-    expect(notation.formatLDecimal(new Decimal("e7e47"), 3)).toBe("10^^1^7.00e47");
-    expect(notation.formatLDecimal(new Decimal("e7e99"), 3)).toBe("10^^1^7.00e99");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 3)).toBe("10^^2^7.00e23");
-    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 3)).toBe("10^^2^7.15e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 1)).toBe("10^^2^7e23");
-    expect(notation.formatLDecimal(new Decimal("ee7e47"), 3)).toBe("10^^2^7.00e47");
-    expect(notation.formatLDecimal(new Decimal("ee7e99"), 3)).toBe("10^^2^7.00e99");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 3)).toBe("10^^3^7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 3)).toBe("10^^3^7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 1)).toBe("10^^3^7e23");
-    expect(notation.formatLDecimal(new Decimal("eee7e47"), 3)).toBe("10^^3^7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eee7e99"), 3)).toBe("10^^3^7.00e99");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 3)).toBe("10^^4^7.00e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 3)).toBe("10^^4^7.15e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 1)).toBe("10^^4^7e23");
-    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 3)).toBe("10^^4^7.00e47");
-    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 3)).toBe("10^^4^7.00e99");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 2)).toBe("10^^1^7.00e23");
+    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 2)).toBe("10^^1^7.15e23");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 0)).toBe("10^^1^7e23");
+    expect(notation.formatLDecimal(new Decimal("e7e47"), 2)).toBe("10^^1^7.00e47");
+    expect(notation.formatLDecimal(new Decimal("e7e99"), 2)).toBe("10^^1^7.00e99");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 2)).toBe("10^^2^7.00e23");
+    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 2)).toBe("10^^2^7.15e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 0)).toBe("10^^2^7e23");
+    expect(notation.formatLDecimal(new Decimal("ee7e47"), 2)).toBe("10^^2^7.00e47");
+    expect(notation.formatLDecimal(new Decimal("ee7e99"), 2)).toBe("10^^2^7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 2)).toBe("10^^3^7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 2)).toBe("10^^3^7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 0)).toBe("10^^3^7e23");
+    expect(notation.formatLDecimal(new Decimal("eee7e47"), 2)).toBe("10^^3^7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eee7e99"), 2)).toBe("10^^3^7.00e99");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 2)).toBe("10^^4^7.00e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 2)).toBe("10^^4^7.15e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 0)).toBe("10^^4^7e23");
+    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 2)).toBe("10^^4^7.00e47");
+    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 2)).toBe("10^^4^7.00e99");
   });
 });
 
@@ -227,25 +234,25 @@ describe("True Tetrational Notation", () => {
 
 
   it("should format all values as Fx", () => {
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 3)).toBe("10^^3.19");
-    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 3)).toBe("10^^3.19");
-    expect(notation.formatLDecimal(new Decimal("e7e23"), 1)).toBe("10^^3");
-    expect(notation.formatLDecimal(new Decimal("e7e47"), 3)).toBe("10^^3.30");
-    expect(notation.formatLDecimal(new Decimal("e7e99"), 3)).toBe("10^^3.39");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 4)).toBe("10^^4.188");
-    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 4)).toBe("10^^4.188");
-    expect(notation.formatLDecimal(new Decimal("ee7e23"), 1)).toBe("10^^4");
-    expect(notation.formatLDecimal(new Decimal("ee7e47"), 4)).toBe("10^^4.300");
-    expect(notation.formatLDecimal(new Decimal("ee7e99"), 4)).toBe("10^^4.393");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 5)).toBe("10^^5.1880");
-    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 5)).toBe("10^^5.1881");
-    expect(notation.formatLDecimal(new Decimal("eee7e23"), 1)).toBe("10^^5");
-    expect(notation.formatLDecimal(new Decimal("eee7e47"), 5)).toBe("10^^5.2999");
-    expect(notation.formatLDecimal(new Decimal("eee7e99"), 5)).toBe("10^^5.3927");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 6)).toBe("10^^6.18799");
-    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 6)).toBe("10^^6.18806");
-    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 1)).toBe("10^^6");
-    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 6)).toBe("10^^6.29987");
-    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 6)).toBe("10^^6.39273");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 2)).toBe("10^^3.19");
+    expect(notation.formatLDecimal(new Decimal("e7.15e23"), 2)).toBe("10^^3.19");
+    expect(notation.formatLDecimal(new Decimal("e7e23"), 0)).toBe("10^^3");
+    expect(notation.formatLDecimal(new Decimal("e7e47"), 2)).toBe("10^^3.30");
+    expect(notation.formatLDecimal(new Decimal("e7e99"), 2)).toBe("10^^3.39");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 3)).toBe("10^^4.188");
+    expect(notation.formatLDecimal(new Decimal("ee7.15e23"), 3)).toBe("10^^4.188");
+    expect(notation.formatLDecimal(new Decimal("ee7e23"), 0)).toBe("10^^4");
+    expect(notation.formatLDecimal(new Decimal("ee7e47"), 3)).toBe("10^^4.300");
+    expect(notation.formatLDecimal(new Decimal("ee7e99"), 3)).toBe("10^^4.393");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 4)).toBe("10^^5.1880");
+    expect(notation.formatLDecimal(new Decimal("eee7.15e23"), 4)).toBe("10^^5.1881");
+    expect(notation.formatLDecimal(new Decimal("eee7e23"), 0)).toBe("10^^5");
+    expect(notation.formatLDecimal(new Decimal("eee7e47"), 4)).toBe("10^^5.2999");
+    expect(notation.formatLDecimal(new Decimal("eee7e99"), 4)).toBe("10^^5.3927");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 5)).toBe("10^^6.18799");
+    expect(notation.formatLDecimal(new Decimal("eeee7.15e23"), 5)).toBe("10^^6.18806");
+    expect(notation.formatLDecimal(new Decimal("eeee7e23"), 0)).toBe("10^^6");
+    expect(notation.formatLDecimal(new Decimal("eeee7e47"), 5)).toBe("10^^6.29987");
+    expect(notation.formatLDecimal(new Decimal("eeee7e99"), 5)).toBe("10^^6.39273");
   });
 });

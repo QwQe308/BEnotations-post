@@ -38,14 +38,15 @@ function toAccuracy(value: number, accuracy: number, fancy: boolean) {
   return value.toPrecision(accuracy);
 }
 
-export function formatNumber(value: number, accuracy: number, fancy: boolean) {
+export function formatNumber(value: number, accuracy: number, fancy: boolean, poste9Acc?: number) {
   if (value <= BigSettings.numCommas) return toAccuracy(value, accuracy, fancy);
   if (value <= 1e9) {
     return addCommas(toAccuracy(value, accuracy, fancy));
   }
+  const e9Acc = poste9Acc ?? accuracy;
   const val1 = value / 10 ** Math.floor(Math.log10(value));
   const val2 = Math.floor(Math.log10(value));
-  return `${toAccuracy(val1, accuracy, false)}e${toAccuracy(val2, accuracy, true)}`;
+  return `${toAccuracy(val1, e9Acc, false)}e${toAccuracy(val2, String(val2).length, true)}`;
 }
 
 function formatBetterMag(value: number, accuracy: number) {
@@ -88,7 +89,7 @@ export function magLayerFormatting(
   }
   output += formatBetterMag(value.mag, accuracy);
   output += layertext;
-  output += formatNumber(value.layer - 1, 0, false);
+  output += formatNumber(value.layer - 1, String(value.layer - 1).length, false, accuracy);
   return output;
 }
 
@@ -109,7 +110,7 @@ export function layerMagFormatting(
   if (value.sign <= 0) {
     output = `-${output}`;
   }
-  output += formatNumber(value.layer - 1, 0, false);
+  output += formatNumber(value.layer - 1, String(value.layer - 1).length, false, accuracy);
   output += magtext;
   output += formatBetterMag(value.mag, accuracy);
   return output;

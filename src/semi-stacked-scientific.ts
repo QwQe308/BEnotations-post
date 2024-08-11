@@ -16,9 +16,9 @@ export class SemiStackedScientificNotation extends Notation {
     if (value.layer <= 4) {
       let str = "";
       str += "e".repeat(value.layer - 1);
-      return `${str}${formatNumber(10 ** (value.mag % 1), places, false)}e${formatNumber(Math.floor(value.mag), 99, true)}`;
+      return `${str}${formatNumber(10 ** (value.mag % 1), places + 1, false)}e${formatNumber(Math.floor(value.mag), 99, true)}`;
     }
-    return layerMagFormatting(value, places, "E", "F");
+    return layerMagFormatting(value, places + 1, "E", "F");
   }
 
 // Public formatDecimal(value: Decimal, places: number, placesExponent: number): string {
