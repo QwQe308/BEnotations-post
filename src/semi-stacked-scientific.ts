@@ -11,7 +11,12 @@ export class SemiStackedScientificNotation extends Notation {
     return "Semi-Stacked Scientific";
   }
 
+  public get isSlog(): boolean {
+    return false;
+  }
+
   public formatLDecimal(value: Decimal, places: number): string {
+    if (value.isNan()) return "NaN";
     if (!value.isFinite) return `${value.sign === -1 ? "-" : ""}Infinity`;
     if (value.layer <= 4) {
       let str = "";
